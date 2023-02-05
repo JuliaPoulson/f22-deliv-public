@@ -24,6 +24,8 @@ import { mainListItems } from './components/listItems';
 import { db, SignInScreen } from './utils/firebase';
 import { emptyEntry } from './utils/mutations';
 
+
+
 // MUI styling constants
 
 const drawerWidth = 240;
@@ -143,6 +145,54 @@ export default function App() {
     )
   }
 
+  const [news, setNews] = useState(null); //Creating "news" variable to store climate news from API
+  
+    useEffect (()=> { //Connecting to API when the page loads
+      const options = {
+        method: 'GET',
+        headers: {
+           'X-RapidAPI-Key': 'b602d11d3dmsh2465c163afe23eep13f3c0jsn2ac14b397ef8',
+           'X-RapidAPI-Host': 'climate-change-live402.p.rapidapi.com'
+        }
+      }; 
+
+      const fetchData = async () => { //Loading in climate news from API
+        try {
+          const response = await fetch('https://climate-change-live402.p.rapidapi.com/news', options);
+          const json = await response.json();
+          let test = JSON.stringify(json);
+          console.log(test);
+          let test2 = null;
+          test2 = "";
+          console.log(test.substring(test.indexOf("title") + 8, test.indexOf("url") - 3)); //Formatting news; API sends data as a tuple which is not supported in js.
+          while (test.indexOf("url") > -1) // Converting to string and slicing appropriately.
+          {
+            test2 = test2 + "-----------------------------------------------------------------------------" + (test.substring(test.indexOf("title") + 8, test.indexOf("url") - 3)) + " --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ";
+            test2 = test2 + (test.substring(test.indexOf("url") + 6, test.indexOf("source")-3))
+            test = test.substring(test.indexOf("source") + 3);
+          }
+          setNews(test2); // Setting "news" state
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+      fetchData();
+   }, [])
+ 
+ 
+    function API () {
+       return (
+        <div>
+            {"Climate change is \"No big deal\"?"} 
+            <br></br><br></br>
+            {/* Displaying news from API */}
+            {news}
+        </div>
+       )
+     }
+
+     
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -231,9 +281,11 @@ export default function App() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             {mainContent()}
+            {API()}
           </Container>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
+

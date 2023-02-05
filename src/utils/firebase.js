@@ -10,13 +10,13 @@ import StyledFirebaseAuth from '../components/StyledFirebaseAuth.tsx';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-   apiKey: "AIzaSyDnYXTrIyou5sVFQYqw1_s1Y3cEb9-0diw",
-   authDomain: "t4sg-f22-deliv.firebaseapp.com",
-   projectId: "t4sg-f22-deliv",
-   storageBucket: "t4sg-f22-deliv.appspot.com",
-   messagingSenderId: "507266397052",
-   appId: "1:507266397052:web:8b3eefbbf5c6af78bceaf9",
-   measurementId: "G-L6H014ZLGT"
+   apiKey: "AIzaSyBGBU4NrmkAx72cJPfswE9AsGdmYClGf58",
+   authDomain: "t4sg-s23-deliv.firebaseapp.com",
+   projectId: "t4sg-s23-deliv",
+   storageBucket: "t4sg-s23-deliv.appspot.com",
+   messagingSenderId: "1044112625899",
+   appId: "1:1044112625899:web:2b0a8590a6e34c0a5b2eae",
+   measurementId: "G-QFVJ8ELYM3"
 };
 
 // Configure FirebaseUI.
